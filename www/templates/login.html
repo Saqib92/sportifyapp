@@ -1,0 +1,23 @@
+<ion-view title="Login" id="page3">
+ <ion-nav-bar class="bar-calm">
+  <ion-nav-buttons side="left" class="has-header">
+    <button class="button button-calm icon ion-android-menu" menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right" class="has-header">
+    <button class="button icon ion-android-more-vertical"></button>
+  </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content padding="true" class="has-header">
+    <form id="login-form3" class="list">
+      <label class="item item-input item-floating-label" id="login-input5">
+        <span class="input-label">Email:</span>
+        <input type="email" placeholder="Email:" ng-model="email">
+      </label>
+      <label class="item item-input item-floating-label" id="login-input6">
+        <span class="input-label">Password:</span>
+        <input type="password" placeholder="Password" ng-model="password">
+      </label>
+    </form>
+    <button id="login-button2" style="border-radius:50px 50px 50px 50px;" ng-click="submit(email, password)" class="button button-calm  button-block icon-right ion-log-in">Log In</button>
+  </ion-content>
+</ion-view>

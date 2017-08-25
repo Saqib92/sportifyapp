@@ -1,0 +1,37 @@
+<ion-view title="Sign Up" id="page2">
+ <ion-nav-bar class="bar-calm">
+    <ion-nav-buttons side="left" class="has-header">
+    <button class="button button-calm icon ion-android-menu" menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right" class="has-header">
+    <button class="button icon ion-android-more-vertical"></button>
+  </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content padding="true" class="has-header">
+    <form id="signUp-form2" class="list">
+      <label class="item item-input" id="signUp-input2">
+        <span class="input-label">Name:</span>
+        <input type="text" placeholder="Name:">
+      </label>
+      <label class="item item-input" id="signUp-input4">
+        <span class="input-label">Email:</span>
+        <input type="email" placeholder="Email:">
+      </label>
+      <label class="item item-input" id="signUp-input3">
+        <span class="input-label">Password:</span>
+        <input type="password" placeholder="">
+      </label>
+    </form>
+    <button id="signUp-button1" class="button button-calm  button-block">Sign Up</button>
+    <div style="margin: auto;" align="center">
+      <p>
+        Already hav an account?
+        <a ui-sref="login">
+          <button class="button button-small button-positive icon icon-right ion-log-in" style="margin-top: -06px;">
+            Login here
+          </button>
+        </a>
+      </p>
+    </div>
+  </ion-content>
+</ion-view>
