@@ -30,6 +30,15 @@ angular.module('app.services', [])
             return $http(req);
 
         }
+        ergastAPI.ground = function (data) {
+            var req = {
+                method: 'POST',
+                url: '/home',
+                data: data
+            };
+            return $http(req);
+
+        }
 
         
 

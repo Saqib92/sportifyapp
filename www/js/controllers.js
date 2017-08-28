@@ -22,19 +22,35 @@ function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location,
                 
             });
 
-
-
+    $scope.bookMe = function(id){
+        var grdObj = {id: id, status: "yes"};
+        myService.ground(grdObj).success(function(res){
+            console.log(grdObj, "Checking ground status")
+            console.log(res);
+            if (res == true) {
+                var alertPopup = $ionicPopup.alert({
+                title: 'Booking Confirm',
+                template: 'Thanks For Booking'
+                });
+        }
+        else{
+            var alertPopup = $ionicPopup.alert({
+                title: 'Error',
+                template: 'Groung Not available'
+                });
+        }
+        })
+        
+    };
 }])
    
 .controller('signUpCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout) {
-
     //ui route to login
     $scope.click = function(){
         $location.path('/side-menu21/login')
-
     }
     //signup function
     $scope.submit = function(name, email, password){

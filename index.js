@@ -17,6 +17,8 @@ var FB = require('fb');
 var jwt = require('jsonwebtoken');
 
 var app = express();
+
+app.set('port', process.env.PORT || 8100);
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 //app.use(cors());
@@ -39,55 +41,13 @@ app.use(function (req, res, next) {
     next();
 })
 
-passport.serializeUser(function (user, done) {
-    done(null, user._id);
-});
-
-passport.deserializeUser(function (id, done) {
-    findById(id, function (err, user) {
-        done(err, user);
-    });
-});
 
 
 
-var MyUser=null;
-var myCat;
-app.set('port', process.env.PORT || 8100);
-passport.use(new LocalStrategy(
-    function (username, password, done) {
-        // Find the user by username.  If there is no user with the given
-        // username, or the password is not correct, set the user to `false` to
-        // indicate failure and set a flash message.  Otherwise, return the
-        // authenticated `user`.
-        console.log(username, password);
-        MyUser=username;
 
-        findByUsername(username, function (err, user) {
-
-            if (err) {
-                return done(err);
-            }
-            if (!user) {
-                return done(null, false, {message: 'Unknown user ' + username});
-            }
-            var OldPassword = user.password.password
-            console.log("This is an Old   " + OldPassword);
-            var NewPassword = hash(password, user.password.salt);
-            console.log("This is a New   " + NewPassword);
-            if (OldPassword != NewPassword) {
-                console.log("Error");
-                return done(null, false, {message: 'Invalid password'});
-            }
-            return done(null, user);
-        });
-    }
-));
-var i=1;
-var pobj={};
 app.use('/',express.static(__dirname + '/www'));
 app.use('/www/', express.static(__dirname + '/www/'));
-var array=[];
+
 
 //Login system
 app.post('/login', function(req,res){
@@ -159,6 +119,28 @@ app.post('/signup', function (req, res) {
 
 });
 
+app.post('/home', checkToken, function (req, res) {
+    res.json({"token":true});
+    var collection = req.db.get('groundlist');
+    var id = req.body.id;
+    var status = req.body.status;
+    collection.findOne({id: id}, function(e, docs4){
+console.log(id, status);
+    if (docs4 == true){
+        res.send('true');
+        }
+    else if(status == true){
+        res.send(true);
+        }
+        else{
+            res.send(false);
+        }
+
+    });
+
+
+
+});
 
 
 function checkToken (req, res, next) {
@@ -187,11 +169,9 @@ function checkToken (req, res, next) {
 }
 
 
-/*app.post('/ProductItems',checkToken, function(req,res){
-    var collection= req.db.get("ProductItems");
-    console.log('abcd 3');
 
-});*/
+
+
 
 app.get('/logout', function (req, res) {
     req.session.destroy();
@@ -200,16 +180,6 @@ app.get('/logout', function (req, res) {
     res.send(true);
 
 });
-
-
-
-app.post('/home', checkToken, function (req, res) {
-    
-    res.json({"token":true});
-
-});
-
-
 
 
 function findProduct(res, ind, collectionName) {
