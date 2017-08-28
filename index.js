@@ -65,7 +65,7 @@ app.post('/login', function(req,res){
         var password = hash(pass, doc.password.salt);
         
         if (password === doc.password.password) {
-            var Token = jwt.sign(doc, 'saqib', {expiresIn: 300});
+            var Token = jwt.sign(doc, 'saqib', {expiresIn: 3000});
             console.log(Token);
             res.json({"token": Token, "success": true});
         } else {
@@ -120,21 +120,34 @@ app.post('/signup', function (req, res) {
 });
 
 app.post('/home', checkToken, function (req, res) {
+    
     res.json({"token":true});
+
+});
+
+
+app.post('/ground', function (req, res) {
+
     var collection = req.db.get('groundlist');
     var id = req.body.id;
     var status = req.body.status;
-    collection.findOne({id: id}, function(e, docs4){
+    collection.findOne({id: id, status: status}, function(e, doc){
 console.log(id, status);
-    if (docs4 == true){
-        res.send('true');
+    if (!doc){
+        res.send(false);
         }
-    else if(status == true){
+    else {
         res.send(true);
-        }
-        else{
-            res.send(false);
-        }
+        var statusUpdate = 'booked';
+        collection.updateOne({status: statusUpdate}, function(e, doc){
+            if (e) {
+                console.log(err);
+            }
+            else{
+                console.log("Grund booked. ");
+            }
+        });
+    }
 
     });
 
@@ -166,7 +179,7 @@ function checkToken (req, res, next) {
         } else {
             return res.json({success: false, token: "Token not found"});
     }
-}
+};
 
 
 
