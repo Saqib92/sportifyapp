@@ -23,7 +23,7 @@ function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location,
             });
 
     $scope.bookMe = function(id){
-        var grdObj = {id: id, status: "yes"};
+        var grdObj = {status: "yes", id: id};
         myService.ground(grdObj).success(function(res){
             console.log(grdObj, "Checking ground status")
             console.log(res);
