@@ -27,7 +27,7 @@ function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location,
         myService.ground(grdObj).success(function(res){
             console.log(grdObj, "Checking ground status")
             console.log(res);
-            if (res === true) {
+            if (res == true) {
                 var alertPopup = $ionicPopup.alert({
                 title: 'Booking Confirm',
                 template: 'Thanks For Booking'
