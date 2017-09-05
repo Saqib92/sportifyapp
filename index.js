@@ -131,7 +131,7 @@ app.post('/ground', function (req, res) {
     var collection = req.db.get('groundlist');
     var id = req.body.id;
     var status = req.body.status;
-    collection.findOneAndUpdate({status: status, id: id},{$set:{status:"booked"}}, function (e, doc) {
+    collection.findOne({status: status, id : id}, function (e, doc) {
         console.log(id, status);
         if (e) {
             console.log(e);
