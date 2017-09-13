@@ -128,21 +128,33 @@ app.post('/home', checkToken, function (req, res) {
 
 app.post('/ground', function (req, res) {
 
-    var collection = req.db.get('groundlist');
-    var id = req.body.id;
-    var status = req.body.status;
-    collection.findOneAndUpdate({status: status, id : id}, $set{ststus :"booked"}, function (e, doc) {
-        console.log(id, status);
-        if (e) {
-            console.log(e);
+  var collection = req.db.get('groundlist');
+
+  collection.findOne({status: "yes", id: req.body.id}, function (err, doc) {
+        //Error handling
+        if (err) {
+           return res.status(500).send('Something broke!');
         }
-         else if(!doc) {
-            res.send(false);
-        }
-         else {
-            res.send(true);
-        }
-    });
+
+       //Send response based on the required
+        if (!doc) {
+             res.send(false);
+             console.log("ID not matched || status is booked")
+        } else {
+            var newStatus = {id: req.body.id, status: "booked"};
+            var query = {id: req.body.id, status: "yes"};
+
+            collection.update(query, newStatus, function(err, doc2){
+                if (err) throw err;
+                if (doc2) {
+                    res.send(true);
+                    console.log("Status update successfully")
+                }
+
+            });
+            }
+        
+   });
 });
 
 
