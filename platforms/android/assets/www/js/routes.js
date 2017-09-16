@@ -10,7 +10,7 @@ angular.module('app.routes', [])
     
   
 
-      .state('menu.home', {
+    .state('menu.home', {
     url: '/home',
     views: {
       'side-menu21': {
@@ -21,7 +21,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.signUp', {
-    url: '/page2',
+    url: '/signup',
     views: {
       'side-menu21': {
         templateUrl: 'templates/signUp.html',
@@ -31,7 +31,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.login', {
-    url: '/page3',
+    url: '/login',
     views: {
       'side-menu21': {
         templateUrl: 'templates/login.html',
@@ -56,14 +56,18 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('selectCategory', {
-    url: '/page5',
+  .state('menu.selectCategory', {
+    url: '/selectCategory',
+    views: {
+      'side-menu21': {
     templateUrl: 'templates/selectCategory.html',
     controller: 'selectCategoryCtrl'
+  }
+}
   })
 
   .state('menu.finalOrder', {
-    url: '/page6',
+    url: '/finalOrder',
     views: {
       'side-menu21': {
         templateUrl: 'templates/finalOrder.html',
@@ -73,7 +77,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.shopForm', {
-    url: '/page7',
+    url: '/shopForm',
     views: {
       'side-menu21': {
         templateUrl: 'templates/shopForm.html',
@@ -83,7 +87,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.buyerDetails', {
-    url: '/page8',
+    url: '/buyerDetails',
     views: {
       'side-menu21': {
         templateUrl: 'templates/buyerDetails.html',
@@ -93,7 +97,5 @@ angular.module('app.routes', [])
   })
 
 $urlRouterProvider.otherwise('/side-menu21/home')
-
-  
 
 });

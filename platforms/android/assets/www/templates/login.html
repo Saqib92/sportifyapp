@@ -11,13 +11,13 @@
     <form id="login-form3" class="list">
       <label class="item item-input item-floating-label" id="login-input5">
         <span class="input-label">Email:</span>
-        <input type="email" placeholder="Email:">
+        <input type="email" placeholder="Email:" ng-model="email">
       </label>
       <label class="item item-input item-floating-label" id="login-input6">
         <span class="input-label">Password:</span>
-        <input type="password" placeholder="Password">
+        <input type="password" placeholder="Password" ng-model="password">
       </label>
     </form>
-    <button id="login-button2" style="border-radius:50px 50px 50px 50px;" class="button button-calm  button-block icon-right ion-log-in">Log In</button>
+    <button id="login-button2" style="border-radius:50px 50px 50px 50px;" ng-click="submit(email, password)" class="button button-calm  button-block icon-right ion-log-in">Log In</button>
   </ion-content>
 </ion-view>

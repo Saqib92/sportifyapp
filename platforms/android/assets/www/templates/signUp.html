@@ -1,4 +1,4 @@
-<ion-view title="Sign Up" id="page2">
+ <ion-view title="Sign Up" id="page2">
  <ion-nav-bar class="bar-calm">
     <ion-nav-buttons side="left" class="has-header">
     <button class="button button-calm icon ion-android-menu" menu-toggle="left"></button>
@@ -11,26 +11,26 @@
     <form id="signUp-form2" class="list">
       <label class="item item-input" id="signUp-input2">
         <span class="input-label">Name:</span>
-        <input type="text" placeholder="Name:">
+        <input type="text" placeholder="Name:" ng-model="name">
       </label>
       <label class="item item-input" id="signUp-input4">
         <span class="input-label">Email:</span>
-        <input type="email" placeholder="Email:">
+        <input type="email" placeholder="Email:" ng-model="email">
       </label>
       <label class="item item-input" id="signUp-input3">
         <span class="input-label">Password:</span>
-        <input type="password" placeholder="">
+        <input type="password" placeholder="Password" ng-model="password">
       </label>
     </form>
-    <button id="signUp-button1" class="button button-calm  button-block">Sign Up</button>
+    <button id="signUp-button1" class="button button-calm  button-block" ng-click="submit(name, email, password)">Sign Up</button>
     <div style="margin: auto;" align="center">
       <p>
         Already hav an account?
-        <a ui-sref="login">
-          <button class="button button-small button-positive icon icon-right ion-log-in" style="margin-top: -06px;">
+        
+          <button  ng-click="click()" class="button button-small button-positive icon icon-right ion-log-in" style="margin-top: -06px;">
             Login here
           </button>
-        </a>
+        
       </p>
     </div>
   </ion-content>
