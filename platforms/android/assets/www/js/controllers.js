@@ -1,9 +1,9 @@
  angular.module('app.controllers', [])
   
-.controller('homeCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homeCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location, $timeout) {
+function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location, $timeout,$state) {
     var data = {};
     $scope.token = localStorage.getItem('token');
     console.log($scope.token);
@@ -21,6 +21,9 @@ function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location,
 
                 
             });
+       $scope.doRefresh=function(){
+        $timeout(function() { $state.go($state.current, {}, {reload: true});}, 3);
+      };
 
     $scope.bookMe = function(id){
         var grdObj = {status: "yes", id: id};
@@ -64,7 +67,10 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
             }
             else{
                 console.log("Error in signup")
-                alert("Email already Used")
+                var alertPopup = $ionicPopup.alert({
+                title: 'Error',
+                template: 'Email already Used'
+                });
             }
 
                 
@@ -96,10 +102,11 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
 
             }
             else{
-                alert("please check Email or password")
-            }
-
-                
+                var alertPopup = $ionicPopup.alert({
+                title: 'Error',
+                template: 'Email or Password is Wrong'
+                });
+            }     
             });
 
 	}

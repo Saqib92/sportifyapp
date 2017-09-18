@@ -16,6 +16,18 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+    if( ionic.Platform.isAndroid() )  { 
+   admobid = { // for Android
+      banner: 'ca-app-pub-4549283750276262/5275662631' // Change this to your Ad Unit Id for banner...
+   };
+
+   if(AdMob) 
+      AdMob.createBanner( {
+         adId:admobid.banner, 
+         position:AdMob.AD_POSITION.BOTTOM_CENTER, 
+         autoShow:true
+      } );
+}
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
