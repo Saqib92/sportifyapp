@@ -19,6 +19,15 @@ angular.module('app.routes', [])
       }
     }
   })
+    .state('menu.tournaments', {
+    url: '/tournaments',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/tournaments.html',
+        controller: 'tournamentsCtrl'
+      }
+    }
+  })
 
   .state('menu.signUp', {
     url: '/signup',

@@ -4,15 +4,14 @@
     <button class="button button-calm icon ion-android-menu" menu-toggle="left"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right" class="has-header">
-    <button class="button button-calm icon ion-android-more-vertical"></button>
+    <button class="button button-calm icon ion-android-more-vertical" ng-click = "openPopover($event)"></button>
   </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content padding="true" class="has-header">
     <ion-list id="finalOrder-list10">
       <ion-item class="item" id="finalOrder-list-item15">
         <h2>{{name.name}}</h2>
-        <div >1 Team Available</div>
-        <div style="float: right; display: inline;">Status: <span style="background-color: green; color: white;">{{grdObj.status}}</span></div>
+        <div >0 Team Available</div>
       </ion-item>
     </ion-list>
     <div>

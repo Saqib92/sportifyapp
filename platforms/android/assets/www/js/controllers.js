@@ -1,9 +1,9 @@
  angular.module('app.controllers', [])
   
-.controller('homeCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homeCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$state','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location, $timeout,$state) {
+function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location, $timeout,$state,$ionicPopover) {
     var data = {};
     $scope.token = localStorage.getItem('token');
     console.log($scope.token);
@@ -34,12 +34,26 @@ function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location,
        $state.go('menu.finalOrder');
         
     };
+    //popover for more settings
+    $ionicPopover.fromTemplateUrl('templates/moreMenu.html', {
+      scope: $scope
+   }).then(function(popover) {
+      $scope.popover = popover;
+   });
+
+   $scope.openPopover = function($event) {
+      $scope.popover.show($event);
+   };
+
+   $scope.closePopover = function() {
+      $scope.popover.hide();
+   };
 }])
    
-.controller('signUpCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('signUpCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout) {
+function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout,$ionicPopover) {
     //ui route to login
     $scope.click = function(){
         $location.path('/side-menu21/login')
@@ -69,15 +83,28 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
 
                 
             });
-    }
+    };
+    $ionicPopover.fromTemplateUrl('templates/moreMenu.html', {
+      scope: $scope
+   }).then(function(popover) {
+      $scope.popover = popover;
+   });
+
+   $scope.openPopover = function($event) {
+      $scope.popover.show($event);
+   };
+
+   $scope.closePopover = function() {
+      $scope.popover.hide();
+   };
 
 
 }])
    
-.controller('loginCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout) {
+function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout,$ionicPopover) {
 //login function
 	$scope.submit = function (email, password){
         $ionicLoading.show({
@@ -108,7 +135,20 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
             }     
             });
 
-	}
+	};
+    $ionicPopover.fromTemplateUrl('templates/moreMenu.html', {
+      scope: $scope
+   }).then(function(popover) {
+      $scope.popover = popover;
+   });
+
+   $scope.openPopover = function($event) {
+      $scope.popover.show($event);
+   };
+
+   $scope.closePopover = function() {
+      $scope.popover.hide();
+   };
 
 
 }])
@@ -137,10 +177,10 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('finalOrderCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('finalOrderCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout) {
+function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout,$ionicPopover) {
     
     var groundObj = JSON.parse(localStorage.getItem('grdObj'));
     $scope.name = JSON.parse(localStorage.getItem('name'));
@@ -168,7 +208,22 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
                 });
         }
         })
-    }
+    };
+
+    $ionicPopover.fromTemplateUrl('templates/moreMenu.html', {
+      scope: $scope
+   }).then(function(popover) {
+      $scope.popover = popover;
+   });
+
+   $scope.openPopover = function($event) {
+      $scope.popover.show($event);
+   };
+
+   $scope.closePopover = function() {
+      $scope.popover.hide();
+   };
+
 
 
 }])

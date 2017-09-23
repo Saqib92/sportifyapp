@@ -7,7 +7,7 @@ angular.module('app.services', [])
         ergastAPI.loginUser = function (data) {
             var req = {
                 method: 'POST',
-                url: 'https://sportyfy.herokuapp.com//login',
+                url: 'https://sportyfy.herokuapp.com/login',
                 data: data
             };
             return $http(req);
@@ -15,7 +15,7 @@ angular.module('app.services', [])
         ergastAPI.registerUser = function (data) {
             var req = {
                 method: 'POST',
-                url: 'https://sportyfy.herokuapp.com//signup',
+                url: 'https://sportyfy.herokuapp.com/signup',
                 data: data
             };
             return $http(req);
@@ -24,7 +24,7 @@ angular.module('app.services', [])
         ergastAPI.home = function (data) {
             var req = {
                 method: 'POST',
-                url: 'https://sportyfy.herokuapp.com//home',
+                url: 'https://sportyfy.herokuapp.com/home',
                 data: data
             };
             return $http(req);
@@ -33,7 +33,7 @@ angular.module('app.services', [])
         ergastAPI.ground = function (data) {
             var req = {
                 method: 'POST',
-                url: 'https://sportyfy.herokuapp.com//ground',
+                url: 'https://sportyfy.herokuapp.com/ground',
                 data: data
             };
             return $http(req);
