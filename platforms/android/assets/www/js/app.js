@@ -14,7 +14,18 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope,$ionicHistory,$state) {
+  //logout function
+  
+  $rootScope.logout = function(){
+    $ionicHistory.clearHistory();
+    $ionicHistory.clearCache();
+    $rootScope.show_login = true;
+    $rootScope.show_logout = false;
+    $state.go('menu.home');
+    console.log("calling");
+    
+  };
   $ionicPlatform.ready(function() {
     if( ionic.Platform.isAndroid() )  { 
    admobid = { // for Android

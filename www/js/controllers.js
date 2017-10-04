@@ -1,9 +1,10 @@
  angular.module('app.controllers', [])
   
-.controller('homeCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$state','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homeCtrl', ['$scope', '$rootScope','$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$state','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location, $timeout,$state,$ionicPopover) {
+function ($scope, $rootScope, $stateParams,$ionicLoading, $ionicPopup, myService, $location, $timeout,$state,$ionicPopover) {
+  
     var data = {};
     $scope.token = localStorage.getItem('token');
     console.log($scope.token);
@@ -11,12 +12,15 @@ function ($scope, $stateParams,$ionicLoading, $ionicPopup, myService, $location,
       myService.home(data).success(function (res) {
             console.log(res);
             if(res.token){
-                $location.path('side-menu21/home')
+                $location.path('side-menu21/home');
+                $rootScope.show_login = false;
+                $rootScope.show_logout = true;
             }
             else{
                 console.log("Error")
                 $location.path('/side-menu21/login');
-                
+                $rootScope.show_login = true;
+                $rootScope.show_logout = false;                
             }
 
                 
@@ -102,10 +106,10 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
 
 }])
    
-.controller('loginCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$stateParams','$ionicLoading','$ionicPopup','myService','$location','$timeout','$ionicPopover', '$rootScope',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout,$ionicPopover) {
+function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout,$ionicPopover, $rootScope) {
 //login function
 	$scope.submit = function (email, password){
         $ionicLoading.show({
@@ -126,7 +130,9 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
                 localStorage.setItem('token', res.token);
                 console.log(localStorage.getItem('token'));
                 $location.path('/side-menu21/home');
-
+                $rootScope.show_login = false;
+                $rootScope.show_logout = true;
+                
             }
             else{
                 var alertPopup = $ionicPopup.alert({
@@ -137,6 +143,8 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
             });
 
 	};
+
+//popup event
     $ionicPopover.fromTemplateUrl('templates/moreMenu.html', {
       scope: $scope
    }).then(function(popover) {
@@ -245,11 +253,21 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('tournamentsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('tournamentsCtrl', ['$scope', '$stateParams', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $state) {
+  $scope.tournamentReg = function(){
+    $state.go('menu.finalTourn');
+  }
+
+
+}])
+
+.controller('finalTournCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
 
 }])
- 

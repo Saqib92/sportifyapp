@@ -15,9 +15,10 @@
     <ion-content padding="false" class="side-menu-left has-header ">
       <ion-list id="menu-list1">
         <ion-item id="menu-list-item1" ui-sref="menu.home" menu-close="">Home</ion-item>
-        <ion-item id="menu-list-item2" ui-sref="menu.signUp" menu-close="">Sign Up</ion-item>
-        <ion-item id="menu-list-item3" ui-sref="menu.login" menu-close="">Log In</ion-item>
-        <ion-item id="menu-list-item3" ui-sref="menu.tournaments" menu-close="">Tournaments</ion-item>
+        <ion-item id="menu-list-item2" ui-sref="menu.signUp" ng-show="show_login" menu-close="">Sign Up</ion-item>
+        <ion-item id="menu-list-item3" ui-sref="menu.login" ng-show="show_login" menu-close="">Log In</ion-item>
+        <ion-item id="menu-list-item4" ui-sref="menu.tournaments" menu-close="">Tournaments</ion-item>
+        <ion-item id="menu-list-item5" ng-show="show_logout" ng-click="logout()" menu-close="">Log Out</ion-item>
         <!-- <ion-item id="menu-list-item18" ui-sref="menu.mainPage2" menu-close="">Main page</ion-item>
         <ion-item id="menu-list-item16" ui-sref="menu.finalOrder" menu-close="">Final order</ion-item>
         <ion-item id="menu-list-item19" ui-sref="menu.shopForm" menu-close="">Shop From</ion-item>
