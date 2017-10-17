@@ -11,8 +11,9 @@ function ($scope, $rootScope, $stateParams,$ionicLoading, $ionicPopup, myService
     data.token = $scope.token;
       myService.home(data).success(function (res) {
             console.log(res);
-            if(res.token){
+            if(res.success == true){
                 $location.path('side-menu21/home');
+                //$state.go("yourState");
                 $rootScope.show_login = false;
                 $rootScope.show_logout = true;
             }
@@ -112,10 +113,22 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
 function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location, $timeout,$ionicPopover, $rootScope) {
 //login function
 	$scope.submit = function (email, password){
+        
+if (email == undefined && password == undefined ) {
+          var alertPopup = $ionicPopup.alert({
+                title: 'Invalid',
+                template: 'Email or Password Missing'
+                });
+        }
+        else{
+
+
         $ionicLoading.show({
       template: '<p>Loading...</p><ion-spinner></ion-spinner>'
      
     });
+
+        
 
 		userObj = {email: email, password: password};
 
@@ -141,7 +154,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, myService, $location
                 });
             }     
             });
-
+}
 	};
 
 //popup event

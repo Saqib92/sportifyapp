@@ -65,7 +65,7 @@ app.post('/login', function(req,res){
         var password = hash(pass, doc.password.salt);
         
         if (password === doc.password.password) {
-            var Token = jwt.sign(doc, 'saqib', {expiresIn: 3000});
+            var Token = jwt.sign(doc, 'saqib', {expiresIn: 30000});
             console.log(Token);
             res.json({"token": Token, "success": true});
         } else {

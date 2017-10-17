@@ -22,6 +22,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
     $ionicHistory.clearCache();
     $rootScope.show_login = true;
     $rootScope.show_logout = false;
+    localStorage.clear();
     $state.go('menu.home');
     console.log("calling");
     
